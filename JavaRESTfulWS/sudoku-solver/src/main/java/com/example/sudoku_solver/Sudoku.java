@@ -185,7 +185,7 @@ public class Sudoku {
      * Cannot be called is_solved due to creating an implicit property by introspectors.
     */
     public boolean was_solved() {
-        var target = new HashSet(ALL_DIGITS);
+        var target = new HashSet<String>(ALL_DIGITS);
         //row condition
         for (int rindex = 0; rindex < this.board.size(); rindex++) {
             var row = this.board.get(rindex);
@@ -198,7 +198,7 @@ public class Sudoku {
         }
         // col condition
         for (int cindex = 0; cindex < 9; cindex++) {
-            var found = new HashSet();
+            var found = new HashSet<String>();
             for (int rindex = 0; rindex < this.board.size(); rindex++) {
                 var row = this.board.get(rindex);
                 var element = row.get(cindex);
@@ -210,7 +210,7 @@ public class Sudoku {
         for (var srow=0; srow<9;srow+=3) {
             for (var scol=0; scol<9; scol+=3) {
                 var sqr_elems = subsquare_ranges(srow,scol);
-                var found = new HashSet();
+                var found = new HashSet<String>();
                 for (var rindex=sqr_elems.row_min; rindex<=sqr_elems.row_max;rindex++){
                     for (var cindex=sqr_elems.col_min; cindex<=sqr_elems.col_max;cindex++){
                         var elem = this.board.get(rindex).get(cindex);
