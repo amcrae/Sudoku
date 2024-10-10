@@ -9,7 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Sudoku puzzle solver. Currently handles novice-level puzzles only.
+ * Sudoku puzzle solver. 
+ * Currently handles novice-level and intermediate-level puzzles only.
  * 
  * @author Andrew McRae
  * First version 2024-10-05.
