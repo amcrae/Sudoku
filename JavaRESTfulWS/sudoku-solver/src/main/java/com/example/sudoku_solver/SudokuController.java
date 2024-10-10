@@ -10,16 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.sudoku_solver.*;
-
-
 @RestController
 @RequestMapping("/api/sudokusolver")
 public class SudokuController {
 
 	@PostMapping
 	public Sudoku solveGrid(@RequestBody Sudoku puzzle) {
-		//Sudoku puzzle = new Sudoku(grid);
 		puzzle.solve();
 		return puzzle;
 	}
