@@ -8,6 +8,12 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Sudoku puzzle solver. Currently handles novice-level puzzles only.
+ * 
+ * @author Andrew McRae
+ * First version 2024-10-05.
+ * */
 public class Sudoku {
 
 	private SymbolGrid board;
@@ -18,7 +24,7 @@ public class Sudoku {
 
 	public Sudoku() {
 		this.board = new SymbolGrid();
-		this.possibles = new HashSet[9][9];
+		this.possibles = new HashSet[9][9];  //Cannot specify type parameter.
 		resetPossibles();
 	}
 
@@ -53,6 +59,9 @@ public class Sudoku {
 	
 	private static List<String> ALL_DIGITS = Arrays.asList(new String[] {"1","2","3","4","5","6","7","8","9"} );
 	
+	/**
+	 * Establish the no-constraints state where all digits could be in all positions.
+	 */
 	private void resetPossibles() {
 		for (int r=0; r<9; r++) {
 			for (int c=0; c<9; c++) {
@@ -101,7 +110,7 @@ public class Sudoku {
     	public int col_max;
     }
     
-    // Produce index limits for a subsquare of the sudoku board.
+    /** Produce index limits for a subsquare of the sudoku board. */
     private static GridRange subsquare_ranges(int row, int col) {
         //answer is the subsquare containing (row,col).
         GridRange answer = new Sudoku.GridRange();
@@ -125,7 +134,7 @@ public class Sudoku {
         }
     }
 
-    /* Eliminate answer as a non-possibility in related positions.
+    /** Eliminate answer as a non-possibility in related positions.
      * 
      */
     private void eliminate_possibles(int row, int col, String answer) {
@@ -134,7 +143,7 @@ public class Sudoku {
         this.eliminate_sqr_poss(row, col, answer);
     }
 
-    /* Where a position has been given a digit, eliminate that possibility
+    /** Where a position has been given a digit, eliminate that possibility
      * from all the other positions related by the sudoku rules.
      * 
      */
@@ -153,7 +162,7 @@ public class Sudoku {
     }
 	
 
-    /* Where a position has been found to have only 1 possibility remaining.
+    /** Where a position has been found to have only 1 possibility remaining.
      * 
      */
     private void fix_solitaries() {
@@ -172,7 +181,7 @@ public class Sudoku {
     }
     
     
-    /* Check if the Sudoku is solved.
+    /** Check if the Sudoku is solved.
      * Cannot be called is_solved due to creating an implicit property by introspectors.
     */
     public boolean was_solved() {
