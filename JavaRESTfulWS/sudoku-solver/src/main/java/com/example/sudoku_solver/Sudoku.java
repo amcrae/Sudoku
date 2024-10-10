@@ -82,6 +82,10 @@ public class Sudoku {
 		}
 		return answer;
 	}
+
+	
+    // ----Rules sufficient for novice level-------------------------
+
 	
     private void eliminate_row_poss(int rindex, int col, String answer){
         var row = this.possibles[rindex];
@@ -162,8 +166,8 @@ public class Sudoku {
     }
 	
 
-    /** Where a position has been found to have only 1 possibility remaining.
-     * 
+    /** Where a position has been found to have only 1 possibility remaining,
+     * fix the value in the board to that possibility.
      */
     private void fix_solitaries() {
         for (int rindex = 0; rindex < this.possibles.length; rindex++) {
@@ -179,7 +183,13 @@ public class Sudoku {
             }
         }        
     }
+
+    // ----Intermediate level----------------------------------------
+
+    //TODO
     
+
+    // ----Solved?---------------------------------------------------
     
     /** Check if the Sudoku is solved.
      * Cannot be called is_solved due to creating an implicit property by introspectors.
