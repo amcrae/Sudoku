@@ -186,9 +186,80 @@ public class Sudoku {
 
     // ----Intermediate level----------------------------------------
 
-    //TODO
-    
 
+    private boolean poss_elsewhere_in_row(String poss, int rindex, int col) {
+        var row = this.possibles[rindex];
+        for (int cindex = 0; cindex < row.length; cindex++) {
+            if (cindex != col) {
+                var pset = row[cindex];
+                if (pset.contains(poss)) return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean poss_elsewhere_in_col(String poss, int row, int col) {
+        for (int rindex = 0; rindex < this.possibles.length; rindex++) {
+            if (rindex!=row) {
+                var rowa = this.possibles[rindex];
+                var pset = rowa[col];
+                if (pset.contains(poss)) return true;
+            }
+        }
+        return false;
+    }    
+    
+    private boolean poss_elsewhere_in_sqr(String poss, int row, int col) {
+        GridRange sqr_range = this.subsquare_ranges(row,col);
+        for (int rindex = sqr_range.row_min; rindex <= sqr_range.row_max; rindex++) {
+            var rowa = this.possibles[rindex];
+            for (int cindex = sqr_range.col_min; cindex <= sqr_range.col_max; cindex++) {
+                if (!(rindex==row && cindex==col)) {
+                    var pset = rowa[cindex];
+                    if(pset.contains(poss)) return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    /** Check if any of the possibilities in possibles do not occur elsewhere
+     * in the same row or col or square, and return that possibility.
+     * Return null if all possibilities in possibles are found elsewhere.
+    */
+    private String find_singular_poss(Set<String> possibles, int rindex, int cindex) {
+        for (String poss : possibles) {
+            var in_row = this.poss_elsewhere_in_row(poss,rindex,cindex);
+            var in_col = this.poss_elsewhere_in_col(poss,rindex,cindex);
+            var in_sqr = this.poss_elsewhere_in_sqr(poss,rindex,cindex);
+            //Any of the 3 rules can determine the possibility is singular.
+            var singular = !in_row || !in_col || !in_sqr;
+            if (singular) return poss;
+        }
+        return null;
+    }    
+    
+    /** Where a possibility occurs in only one position in the
+     * same row, or column, or square, it must be answer.
+    */
+    private void fix_group_inevitables() {
+        for (int rindex = 0; rindex < this.board.size(); rindex++) {
+            var row = this.board.get(rindex);
+            for (int cindex = 0; cindex < row.size(); cindex++) {
+                String element = row.get(cindex);
+                var posses = this.possibles[rindex][cindex];
+                // Looking for cells which are still unknown.
+                if ((element == null) && posses.size()>1) {
+                    var singular = this.find_singular_poss(posses,rindex,cindex);
+                    if (singular!=null) {
+                    	logger.info(String.format("Found %d,%d is %s.", rindex,cindex,singular));
+                    	row.set(cindex, singular);
+                    }
+                }
+            }
+        }
+    }
+    
     // ----Solved?---------------------------------------------------
     
     /** Check if the Sudoku is solved.
@@ -243,6 +314,7 @@ public class Sudoku {
 			int poss = countPossibles();
 			exclude_givens();
 			this.fix_solitaries();
+			this.fix_group_inevitables();
 			this.setSolveMessage("novice solve");
 			int possPrime = countPossibles();
 			deltaPossibles = possPrime-poss;
