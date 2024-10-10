@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a36f9946-b9a2-47eb-8fd7-7d5f72b373b4" activeEnvironment="Default" name="Sudoku Solver" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="597e2450-861d-42e9-b763-c2529d3bbddf" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="" path="api/sudokusolver" id="81c50d5e-eecf-41ef-a33c-781aa648a53a"><con:settings/><con:parameters/><con:method name="1" id="6a9467e3-d21c-403d-b920-fd3209953128" method="POST"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/><con:element xmlns:sud="http://localhost/api/sudokusolver">sud:Fault</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:sud="http://localhost/api/sudokusolver">sud:Response</con:element></con:representation><con:request name="Request 1" id="1baa8e0d-590b-479c-90a0-7d196bb48584" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+"originalSource":"unit test",
+"grid": [
+  [ "0", null],
+  [ "2", "3"]
+]
+}
+</con:request><con:originalUri>http://localhost/api/sudokusolver</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="87e3e927-d1d1-4f34-900a-162146f60c08" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="689891f1-bbda-40c3-90f3-276c2d00cada" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:description>Solve number 1 starting with 34 givens.</con:description><con:settings/><con:testStep type="restrequest" name="REST Request Solve" id="e23f64f6-4f6b-412b-a99f-b4feb38e04df"><con:settings/><con:config service="http://localhost:8080" methodName="1" resourcePath="/api/sudokusolver" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Request Solve" id="254cde58-e2f9-4e73-99c9-dbac5a5b5391" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+"originalSource": "Handy Sudoku Issue 233 Number 1",
+"grid": [
+    [null,null,null, null,null,"2" , "4" ,null,null],
+    [null,null,"1" , "8" ,"3" ,null, null,null,"9" ],
+    [null,"8" ,null, "5" ,null,null, "1" ,"7" ,"2" ],
+    [null,null,"6" , "9" ,"2" ,null, "7" ,null,"5" ],
+    ["2" ,null,null, null,null,null, null,null,"6" ],
+    ["5" ,null,"9" , null,"1" ,"6" , "8" ,null,null],
+    ["1" ,"7" ,"2" , null,null,"8" , null,"4" ,null],
+    ["3" ,null,null, null,"9" ,"7" , "5" ,null,null],
+    [null,null,"8" , "3" ,null,null, null,null,null]
+]
+}</con:request><con:originalUri>http://localhost/api/sudokusolver</con:originalUri><con:assertion type="Simple Contains" id="f48e2c04-3ff1-4c2f-9963-4279c3f6fccd" name="Contains"><con:configuration><token>"Solved in</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
