@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "3d908106-9788-4efa-8406-5294f32ddff7",
+		"name": "Sudoku solver",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39866482"
+	},
+	"item": [
+		{
+			"name": "Invalid request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"originalSource\": \"Invalid Sudoku puzzle request\",\n    \"grid\": [[1, null],[null, null]]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/sudokusolver",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"sudokusolver"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solve Issue233No1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"originalSource\": \"Handy Sudoku Issue 233 No 1\",\n    \"grid\": [\n    [null,null,null, null,null,\"2\" , \"4\" ,null,null],\n    [null,null,\"1\" , \"8\" ,\"3\" ,null, null,null,\"9\"],\n    [null,\"8\" ,null, \"5\" ,null,null, \"1\" ,\"7\" ,\"2\" ],\n    [null,null,\"6\" , \"9\" ,\"2\" ,null, \"7\" ,null,\"5\" ],\n    [\"2\" ,null,null, null,null,null, null,null,\"6\" ],\n    [\"5\" ,null,\"9\" , null,\"1\" ,\"6\" , \"8\" ,null,null],\n    [\"1\" ,\"7\" ,\"2\" , null,null,\"8\" , null,\"4\" ,null],\n    [\"3\" ,null,null, null,\"9\" ,\"7\" , \"5\" ,null,null],\n    [null,null,\"8\" , \"3\" ,null,null, null,null,null]\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/sudokusolver",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"sudokusolver"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
