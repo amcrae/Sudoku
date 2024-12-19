@@ -6,6 +6,7 @@ The algorithm chosen is my own understanding of solving [Sudoku puzzles](https:/
 
 * Javascript in Browser. (See [live version](https://amcrae.github.io/SudokuJS/sudoku.html).)
 * Java in a JSON ("RESTful") web service.
+* Python in a JSON web service
 
 # Prehistory
 First in December 2023 I figured out how to solve novice Sudoku puzzles with pen and paper.
